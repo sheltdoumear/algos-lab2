@@ -10,6 +10,8 @@ playlist.add_track(track_1)
 playlist.add_track(track_2)
 playlist.add_track(track_3)
 
+playlist.display()
+
 print(playlist.current_track().name)  # вернет имя первого добавленого трека
 print(playlist.next_track().duration) # вернет продолжительность второго добавленого трека
 print(playlist.current_track().genre) # вернет жанр второго добавленого трека
@@ -30,4 +32,9 @@ print(playlist.next_track().name, "\n")# уже следующий трек
 
 
 playlist.repeat_mode = RepeatMode.ALL
-print(playlist.current_track().name)
+
+
+playlist.delete_track(track_2)  #удаляем второй трек
+playlist.display()
+
+

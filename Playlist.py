@@ -74,3 +74,34 @@ class Playlist:
 
         return self.current_track()
 
+    def display(self):
+
+        headers = ["Название", "Длительность", "Жанр", "Рейтинг"]
+
+        rows = []
+        for track in self._tracks:
+            minutes = track.duration // 60
+            seconds = track.duration % 60
+            duration_str = f"{minutes:02d}:{seconds:02d}"
+            rating_str = f"{track.rating:.1f}"
+            rows.append([track.name, duration_str, track.genre, rating_str])
+
+        col_widths = [len(h) for h in headers]
+        for row in rows:
+            for i, cell in enumerate(row):
+                col_widths[i] = max(col_widths[i], len(cell))
+
+        def print_separator():
+            print("+" + "+".join("-" * (w + 2) for w in col_widths) + "+")
+
+        print_separator()
+
+        header_line = "| " + " | ".join(h.ljust(col_widths[i]) for i, h in enumerate(headers)) + " |"
+        print(header_line)
+        print_separator()
+
+        for row in rows:
+            data_line = "| " + " | ".join(cell.ljust(col_widths[i]) for i, cell in enumerate(row)) + " |"
+            print(data_line)
+        print_separator()
+
