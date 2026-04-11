@@ -24,7 +24,7 @@
   - _current_index (индекс текущего трека в массиве)
   - repeat_mode (режим повтора)
 
-  И 7 фукнциями:
+  ### И 7 фукнциями:
   - add_track 
   - delete_track
   - shuffle_playlist
