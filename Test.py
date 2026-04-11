@@ -22,6 +22,8 @@ print(playlist.next_track().rating)# вернет рейгинт первого 
 
 playlist.shuffle_playlist() # перемешиываем
 
+playlist.display()
+
 print(playlist.current_track().name, "\n") # первый трек в перемешанном плейлисте
 
 playlist.repeat_mode = RepeatMode.ONE  # вклчюаем повтор
@@ -36,5 +38,8 @@ playlist.repeat_mode = RepeatMode.ALL
 
 playlist.delete_track(track_2)  #удаляем второй трек
 playlist.display()
+
+print(playlist.find_tracks_in_time_range(2, 100, 500))   # вернет список из не более
+# чем 2 треков, длителдьностью от 100 до 500 секунд
 
 

@@ -105,3 +105,15 @@ class Playlist:
             print(data_line)
         print_separator()
 
+    def find_tracks_in_time_range(self, n, min_duration, max_duration):
+        result = []
+        for track in self._tracks:
+            if min_duration <= track.duration <= max_duration:
+                result.append(track.name)
+                if len(result) == n:
+                    break
+        return result
+
+
+
+
