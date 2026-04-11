@@ -22,7 +22,7 @@
   - name
   - _tracks   (массив содержащий треки)
   - _current_index (индекс текущего трека в массиве)
-  - repeat_mode
+  - repeat_mode (режим повтора)
 
   И 7 фукнциями:
   - add_track 
