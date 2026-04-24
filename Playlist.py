@@ -1,6 +1,8 @@
 from Track_file import Track
 import random
 from enum import Enum
+from tabulate import tabulate
+
 
 
 class RepeatMode(Enum):
@@ -68,42 +70,24 @@ class Playlist:
             self._current_index = next_index
         elif self.repeat_mode == RepeatMode.ALL:
             self._current_index = 0
-        else:   # если трек - послдений, то всключается первый трек
+        else:   # если трек - послдений, то включается первый трек
             self._current_index = 0
 
 
         return self.current_track()
 
     def display(self):
-
         headers = ["Название", "Длительность", "Жанр", "Рейтинг"]
 
         rows = []
         for track in self._tracks:
             minutes = track.duration // 60
             seconds = track.duration % 60
-            duration_str = f"{minutes:02d}:{seconds:02d}"
-            rating_str = f"{track.rating:.1f}"
-            rows.append([track.name, duration_str, track.genre, rating_str])
+            duration_min_sec = f"{minutes:02d}:{seconds:02d}"
+            rating = f"{track.rating:.1f}"
+            rows.append([track.name, duration_min_sec, track.genre, rating])
 
-        col_widths = [len(h) for h in headers]
-        for row in rows:
-            for i, cell in enumerate(row):
-                col_widths[i] = max(col_widths[i], len(cell))
-
-        def print_separator():
-            print("+" + "+".join("-" * (w + 2) for w in col_widths) + "+")
-
-        print_separator()
-
-        header_line = "| " + " | ".join(h.ljust(col_widths[i]) for i, h in enumerate(headers)) + " |"
-        print(header_line)
-        print_separator()
-
-        for row in rows:
-            data_line = "| " + " | ".join(cell.ljust(col_widths[i]) for i, cell in enumerate(row)) + " |"
-            print(data_line)
-        print_separator()
+        print(tabulate(rows, headers=headers, tablefmt="grid"))
 
     def find_tracks_in_time_range(self, n, min_duration, max_duration):
         result = []
